@@ -5,11 +5,11 @@ Rails.application.routes.draw do
   resources :orders, only: [:index, :show]
   resources :users,  only: [:index, :show]
 
-  Rails.application.routes.draw do
-    namespace :api do
-      namespace :v1, defaults: {format: :json} do
-        resources :items, only: [:index, :show]
-      end
+
+  namespace :api do
+    namespace :v1, defaults: {format: :json} do
+      resources :items, only: [:index, :show]
     end
   end
+
 end

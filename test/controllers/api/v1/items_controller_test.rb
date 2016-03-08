@@ -1,11 +1,23 @@
 require 'test_helper'
 
 class Api::V1::ItemsControllerTest < ActionController::TestCase
-  test "#index" do
 
+  test "#index" do
     get :index, format: :json
+    binding.pry
+    items = JSON.parse(response.body)
+
+    assert_response :success
+    assert_equal 2, items.count
+  end
+
+  test "#show" do
+    id = Item.first.id
+
+    get :index, id: id, format: :json
 
     items = JSON.parse(response.body)
+
     assert_response :success
     assert_equal 2, items.count
   end
