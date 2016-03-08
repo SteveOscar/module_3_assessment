@@ -13,6 +13,10 @@ gem "haml-rails"
 gem "therubyracer"
 gem "less-rails-bootstrap"
 gem "minitest-rails"
+gem 'faraday'
+gem "responders"
+gem "active_model_serializers", github: "rails-api/active_model_serializers"
+gem "figaro"
 
 group :development do
   gem "spring"
@@ -21,4 +25,12 @@ end
 group :development, :test do
   gem "minitest-rails-capybara"
   gem "pry", :require => "pry"
+end
+
+group :test do
+  gem 'simplecov', :require => false
+  gem 'launchy'
+  gem 'vcr'
+  gem "minitest-vcr"
+  gem 'webmock'
 end
