@@ -1,6 +1,5 @@
 require 'json'
 require 'faraday'
-require 'cgi'
 require 'uri'
 
 
@@ -9,13 +8,11 @@ class BestBuyService
 
   def initialize(params)
     product = params["subject"]
-    url = "https://api.bestbuy.com/v1/products(longDescription=#{product}*|sku=7619002)?show=sku,name&pageSize=15&page=5&apiKey=#{ENV["BEST_BUY_ID"]}&format=json"
-    # @safeurl = URI.parse(CGI.escape(url).gsub("%3A", ":").gsub("%2F", "/"))
+    url = "https://api.bestbuy.com/v1/products(longDescription=#{product}*|sku=7619002)?show=customerReviewAverage.asc&show=customerReviewAverage,shortDescription,image,name,sku,salePrice&facet=salePrice&pageSize=15&page=5&apiKey=#{ENV["BEST_BUY_ID"]}&format=json"
     @uri = URI.parse(URI.encode(url))
   end
 
   def product_search
-    binding.pry
     response = Faraday.get(@uri)
     JSON.parse(response.body)
   end

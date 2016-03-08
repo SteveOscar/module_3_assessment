@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :items,  only: [:index, :show]
   resources :orders, only: [:index, :show]
   resources :users,  only: [:index, :show]
-  post '/search', to: 'searches#index'
+  post '/search', to: 'searches#search'
 
 
   namespace :api do
