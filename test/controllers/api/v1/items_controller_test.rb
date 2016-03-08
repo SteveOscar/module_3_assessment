@@ -45,12 +45,13 @@ class Api::V1::ItemsControllerTest < ActionController::TestCase
 
   test "#create" do
     start_item_count = Item.count
-    item_params = {item: {name: "truck", description: "so fast", image_url: "www.example.com"}}
+    item_params = {name: "truck", description: "so fast", image_url: "www.example.com"}
     post :create, item: item_params, format: :json
 
     end_item_count = Item.count
 
-    assert_response(204)
+    assert_response :success
     assert end_item_count > start_item_count
+    assert_equal Item.last.name, "truck"
   end
 end

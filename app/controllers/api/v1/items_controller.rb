@@ -10,7 +10,6 @@ class Api::V1::ItemsController < ApplicationController
   end
 
   def create
-    binding.pry
     respond_with Item.create(item_params), location: nil
   end
 
