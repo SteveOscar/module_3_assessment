@@ -12,7 +12,6 @@ gem "faker"
 gem "haml-rails"
 gem "therubyracer"
 gem "less-rails-bootstrap"
-gem "minitest-rails"
 gem 'faraday'
 gem "responders"
 gem "active_model_serializers", github: "rails-api/active_model_serializers"
@@ -33,4 +32,5 @@ group :test do
   gem 'vcr'
   gem "minitest-vcr"
   gem 'webmock'
+  gem "minitest-rails"
 end
