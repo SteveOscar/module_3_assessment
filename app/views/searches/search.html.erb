@@ -1,12 +1,13 @@
 <h2>Product Search</h2>
 <% @products.each_with_index do |product, i| %>
   <div id="result<%= i %>" class="result_card">
+    <h6>Product <%= i + 1 %> </h6>
     <ul>
       <li>sku: <%= product["sku"] %> </li>
       <li>name: <%= product["name"] %> </li>
       <li>customer average review: <%= product["customerReviewAverage"] %> </li>
       <li>description: <%= product["shortDescription"] %> </li>
-      <li>sale price: <%= product["sku"] %> </li>
+      <li>sale price: <%= product["salePrice"] %> </li>
       <li>image: <%= product["image"] %> </li>
     </ul>
   </div>
