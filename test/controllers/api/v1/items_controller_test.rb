@@ -1,15 +1,13 @@
 require 'test_helper'
 
 class Api::V1::ItemsControllerTest < ActionController::TestCase
-
   test "#index" do
     get :index, format: :json
 
     items = JSON.parse(response.body)
     sample_item = items.first
+
     assert_response :success
-
-
     assert_equal 2, items.count
     assert_equal sample_item["name"], "Heavy Cotton Pants"
     assert_equal sample_item["description"], "heavy when wet"
@@ -34,4 +32,14 @@ class Api::V1::ItemsControllerTest < ActionController::TestCase
     refute items["updated_at"]
   end
 
+  test "#destroy" do
+    id = Item.first.id
+    start_item_count = Item.count
+
+    delete :destroy, id: id, format: :json
+    end_item_count = Item.count
+
+    assert_response(204)
+    assert end_item_count < start_item_count
+  end
 end
