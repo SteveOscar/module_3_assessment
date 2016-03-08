@@ -50,8 +50,18 @@ class Api::V1::ItemsControllerTest < ActionController::TestCase
 
     end_item_count = Item.count
 
-    assert_response :success
+    assert_response(201)
     assert end_item_count > start_item_count
     assert_equal Item.last.name, "truck"
+  end
+
+  test "#create with invalid params" do
+    start_item_count = Item.count
+    item_params = {created_at: "truck", updated_at: "so fast", image_url: "www.example.com"}
+    post :create, item: item_params, format: :json
+
+    end_item_count = Item.count
+
+    assert_equal end_item_count, start_item_count
   end
 end
