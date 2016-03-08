@@ -42,4 +42,15 @@ class Api::V1::ItemsControllerTest < ActionController::TestCase
     assert_response(204)
     assert end_item_count < start_item_count
   end
+
+  test "#create" do
+    start_item_count = Item.count
+    item_params = {item: {name: "truck", description: "so fast", image_url: "www.example.com"}}
+    post :create, item: item_params, format: :json
+
+    end_item_count = Item.count
+
+    assert_response(204)
+    assert end_item_count > start_item_count
+  end
 end
