@@ -6,26 +6,32 @@ class Api::V1::ItemsControllerTest < ActionController::TestCase
     get :index, format: :json
 
     items = JSON.parse(response.body)
-
+    sample_item = items.first
     assert_response :success
 
+
     assert_equal 2, items.count
-    assert_equal items.first["name"], "Heavy Cotton Pants"
-    assert_equal items.first["description"], "heavy when wet"
-    assert items.first["image_url"]
-    refute items.first["created_at"]
-    refute items.first["updated_at"]
+    assert_equal sample_item["name"], "Heavy Cotton Pants"
+    assert_equal sample_item["description"], "heavy when wet"
+    assert sample_item["image_url"]
+    refute sample_item["created_at"]
+    refute sample_item["updated_at"]
   end
 
-  # test "#show" do
-  #   id = Item.first.id
-  #
-  #   get :index, id: id, format: :json
-  #
-  #   items = JSON.parse(response.body)
-  #
-  #   assert_response :success
-  #   assert_equal 2, items.count
-  # end
+  test "#show" do
+    id = Item.first.id
+
+    get :show, id: id, format: :json
+
+    items = JSON.parse(response.body)
+
+    assert_response :success
+    assert_equal 1, items["id"]
+    assert_equal items["name"], "Heavy Cotton Pants"
+    assert_equal items["description"], "heavy when wet"
+    assert items["image_url"]
+    refute items["created_at"]
+    refute items["updated_at"]
+  end
 
 end
