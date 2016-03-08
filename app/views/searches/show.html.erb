@@ -3,7 +3,8 @@
 <%= form_tag('/search') do %>
    <p>
      product:<br />
-     <%= text_field_tag "subject" %>
+     <!-- <%= text_field_tag "subject", id: "search-box" %> -->
+     <%= text_field_tag :subject, "", id: 'search-box' %>
    </p>
    <p>
      <%= submit_tag 'Submit' %>

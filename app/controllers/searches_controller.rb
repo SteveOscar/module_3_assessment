@@ -5,8 +5,8 @@ class SearchesController < ApplicationController
   end
 
   def index
-    binding.pry
     best_buy = BestBuyService.new(params)
     products = best_buy.product_search
+    binding.pry
   end
 end
